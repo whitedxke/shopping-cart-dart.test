@@ -8,7 +8,7 @@
 
 Для того чтобы запустить проект, необходимо установить:
 - [Скачать, и установить Flutter SDK](https://docs.flutter.dev/get-started/install);
-- [Скачать, и учтановить Dart SDK](https://dart.dev/get-dart);
+- [Скачать, и установить Dart SDK](https://dart.dev/get-dart);
 - [Android Studio или же, другой предпочитаемый редактор](https://developer.android.com/studio?hl=en).
 
 Возможно, если вы используете MacOS, то - вам может помочь данная статья:
@@ -47,7 +47,7 @@ flutter doctor
 - Язык программирования: Dart — основной язык для разработки на Flutter;
 - Фреймворк: Flutter — для создания кросс-платформенных мобильных приложений;
 - Пакеты:
-  1. [http](https://pub.dev/packages/http/install) — для асинхронных HTTP-запросов;
-  2. [bloc](https://bloclibrary.dev/getting-started/) — для управления состоянием приложения;
-  3. [get_it](https://pub.dev/packages/get_it/install) — для внедрения зависимостей;
-  4. [shared_preferences](https://pub.dev/packages/shared_preferences/install) — для хранения данных локально.
+  - [http](https://pub.dev/packages/http/install) — для асинхронных HTTP-запросов;
+  - [bloc](https://bloclibrary.dev/getting-started/) — для управления состоянием приложения;
+  - [get_it](https://pub.dev/packages/get_it/install) — для внедрения зависимостей;
+  - [shared_preferences](https://pub.dev/packages/shared_preferences/install) — для хранения данных локально.
