@@ -23,7 +23,7 @@ gh repo clone whitedxke/shopping-cart-dart.test
 
 Перейдите в директорию проекта:
 ```
-shopping-cart-dart.test
+cd shopping-cart-dart.test
 ```
 
 Установите необходимые зависимости:
