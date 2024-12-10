@@ -1,16 +1,53 @@
-# application.
+# Приложение.
 
-A new Flutter project.
+Мобильное Flutter-приложение для просмотра товаров, и добавления их в корзину.
 
-## Getting Started.
+## Инструкция, как заупустить.
 
-This project is a starting point for a Flutter application.
+#### Требования.
 
-A few resources to get you started if this is your first Flutter project:
+Для того чтобы запустить проект, необходимо установить:
+- [Скачать, и установить Flutter SDK](https://docs.flutter.dev/get-started/install);
+- [Скачать, и учтановить Dart SDK](https://dart.dev/get-dart);
+- [Android Studio или же, другой предпочитаемый редактор](https://developer.android.com/studio?hl=en).
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab).
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook).
+Возможно, если вы используете MacOS, то - вам может помочь данная статья:
+- [Installing the Flutter SDK on MacOS](https://www.codecademy.com/article/install-flutter-sdk-for-mac).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### Установка.
+
+Склонируйте данный репозиторий:
+```
+gh repo clone whitedxke/shopping-cart-dart.test
+```
+
+Перейдите в директорию проекта:
+```
+shopping-cart-dart.test
+```
+
+Установите необходимые зависимости:
+```
+flutter pub get
+flutter pub upgrade
+```
+
+Запустите приложение:
+```
+flutter run
+```
+
+Если возникнут ошибки или проблемы, проверить их с помощью команды:
+```
+flutter doctor
+```
+
+## Используемые технологии.
+
+- Язык программирования: Dart — основной язык для разработки на Flutter;
+- Фреймворк: Flutter — для создания кросс-платформенных мобильных приложений;
+- Пакеты:
+  1. [http](https://pub.dev/packages/http/install) — для асинхронных HTTP-запросов;
+  2. [bloc](https://bloclibrary.dev/getting-started/) — для управления состоянием приложения;
+  3. [get_it](https://pub.dev/packages/get_it/install) — для внедрения зависимостей;
+  4. [shared_preferences](https://pub.dev/packages/shared_preferences/install) — для хранения данных локально.
