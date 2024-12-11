@@ -47,7 +47,11 @@ flutter doctor
 - Язык программирования: Dart — основной язык для разработки на Flutter;
 - Фреймворк: Flutter — для создания кросс-платформенных мобильных приложений;
 - Пакеты:
-  - [http](https://pub.dev/packages/http/install) — для асинхронных HTTP-запросов;
-  - [bloc](https://bloclibrary.dev/getting-started/) — для управления состоянием приложения;
-  - [get_it](https://pub.dev/packages/get_it/install) — для внедрения зависимостей;
-  - [shared_preferences](https://pub.dev/packages/shared_preferences/install) — для хранения данных локально.
+  - [http](https://pub.dev/packages/http/install) — выполнение асинхронных HTTP-запросов;
+  - [bloc](https://bloclibrary.dev/getting-started/) — управление состоянием приложения по принципу BLoC (Business Logic Component);
+  - [get_it](https://pub.dev/packages/get_it/install) — внедрение зависимостей (Dependency Injection);
+  - [shared_preferences](https://pub.dev/packages/shared_preferences/install) — хранение данных локально;
+  - [auto_route](https://pub.dev/packages/auto_route/install) — реализация навигации с параметрами маршрутов;
+  - [flutter_screenutil](https://pub.dev/packages/flutter_screenutil/install) — адаптивный дизайн, который помогает с настройкой размеров интерфейса;
+  - [equatable](https://pub.dev/packages/equatable/install) — упрощение сравнения объектов;
+  - [json_serializable](https://pub.dev/packages/json_serializable/install) — генерация кода сериализации, и десериализации объектов.
