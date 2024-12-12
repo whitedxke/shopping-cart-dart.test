@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
@@ -33,18 +35,24 @@ class Network {
         queryParameters: queryParameters,
       );
 
-      final response = await _client.get(
-        parameters,
-        headers: headers,
-      );
+      final response = await _client
+        .get(
+          parameters,
+          headers: headers,
+        ).timeout(
+          const Duration(
+            seconds: 60,
+          ),
+        );
 
       return _handleResponse(
         response: response,
       );
     } catch (exception) {
-      throw Exception(
-        'Error fetching data: $exception.',
+      _handleError(
+        exception: exception,
       );
+      rethrow;
     }
   }
 
@@ -54,7 +62,7 @@ class Network {
     );
   }
 
-  // Method for adding query parameters to the URI.
+  // A method for adding query parameters to the URI.
   Uri _getQueryParameters({
     required Uri baseUri,
     required Map<String, String>? queryParameters,
@@ -72,10 +80,53 @@ class Network {
       return json.decode(
         response.body,
       );
+    } else if (response.statusCode == 404) {
+      throw ServerException(
+        response.statusCode,
+      );
     } else {
       throw Exception(
-        'Failed to load data: ${response.statusCode}.',
+        'Unidentified server error.',
       );
     }
   }
+
+  // Handles potential errors, that can occur during network requests.
+  void _handleError({
+    required dynamic exception,
+  }) {
+    if (exception is SocketException) {
+      throw NetworkException(
+        'Check the internet connection.',
+      );
+    } else if (exception is http.ClientException) {
+      throw Exception(
+        'Error fetching data: ${exception.message}.',
+      );
+    } else if (exception is TimeoutException) {
+      throw NetworkException(
+        'The time to wait for a response from the server has been exceeded.',
+      );
+    } else {
+      throw NetworkException(
+        'An unknown error occurred: $exception.',
+      );
+    }
+  }
+}
+
+class NetworkException implements Exception {
+  final String message;
+
+  NetworkException(
+    this.message,
+  );
+}
+
+class ServerException implements Exception {
+  final int statusCode;
+
+  ServerException(
+    this.statusCode,
+  );
 }
