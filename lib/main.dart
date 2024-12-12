@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/network/network.dart';
 import 'core/repositories/base_repository.dart';
 import 'core/repositories/products/products_repository.dart';
+import 'observer.dart';
+import 'ui/products/bloc/products_bloc.dart';
+import 'ui/products/products_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = ApplicationBlocObserver();
   final getIt = GetIt.I;
 
   // Configure the network, and repositories.
@@ -20,15 +26,6 @@ Future<void> main() async {
   // Initializing repository dependencies.
   for (var repository in repositories) {
     await repository.initialDependencies();
-  }
-
-  // Для тестирования.
-  final productsRepository = getIt.get<ProductsRepository>();
-  try {
-    final products = await productsRepository.getProducts();
-    print('LOLYOU: $products.');
-  } catch (error) {
-    print('Ошибка при получении продуктов: $error.');
   }
 
   runApp(
@@ -56,7 +53,7 @@ Future<List<BaseRepository>> _configureRepositories({
     ProductsRepository(),
   );
 
-  // Repository Registration.
+  // Repository registration.
   for (var repository in repositories) {
     repository.registration(
       getIt: getIt,
@@ -71,6 +68,25 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ScreenUtilInit(
+      useInheritedMediaQuery: true,
+      minTextAdapt: true,
+      designSize: const Size(
+        375,
+        812,
+      ),
+      fontSizeResolver: FontSizeResolvers.height,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<ProductsBloc>(
+            create: (context) => ProductsBloc()..add(GetProducts()),
+          ),
+        ],
+        child: const MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: ProductsScreen(),
+        ),
+      ),
+    );
   }
 }
