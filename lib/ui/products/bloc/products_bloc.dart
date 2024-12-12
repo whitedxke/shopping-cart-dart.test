@@ -27,9 +27,15 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
     );
     try {
       final products = await _productsRepository.getProducts();
+      final excluded = {6, 9, 19};
+      final sortedProducts = products
+          .where(
+            (product) => !excluded.contains(product.id),
+          )
+          .toList();
       emit(
         ProductsLoaded(
-          products: products,
+          products: sortedProducts,
         ),
       );
     } catch (error) {
