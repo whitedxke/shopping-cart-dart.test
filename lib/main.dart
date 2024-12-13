@@ -7,6 +7,7 @@ import 'core/network/network.dart';
 import 'core/repositories/base_repository.dart';
 import 'core/repositories/products/products_repository.dart';
 import 'observer.dart';
+import 'ui/product_details/bloc/product_details_bloc.dart';
 import 'ui/products/bloc/products_bloc.dart';
 import 'ui/products/products_screen.dart';
 
@@ -80,6 +81,9 @@ class Application extends StatelessWidget {
         providers: [
           BlocProvider<ProductsBloc>(
             create: (context) => ProductsBloc()..add(GetProducts()),
+          ),
+          BlocProvider<ProductDetailsBloc>(
+            create: (context) => ProductDetailsBloc(),
           ),
         ],
         child: const MaterialApp(

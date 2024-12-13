@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/models/product/product.dart';
+import '../product_details/bloc/product_details_bloc.dart';
+import '../product_details/product_details_screen.dart';
 import 'bloc/products_bloc.dart';
 import 'widgets/base_state_widget.dart';
 import 'widgets/product_item_widget.dart';
@@ -33,6 +35,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
             } else if (state is ProductsLoaded) {
               return _buildProductsWidget(
                 products: state.products,
+                onProductDetailsTap: _toNavigateProductDetails,
               );
             } else if (state is ProductsError) {
               return _buildProductsErrorStateWidget(
@@ -42,6 +45,21 @@ class _ProductsScreenState extends State<ProductsScreen> {
             return _buildProductsEmptyStateWidget();
           },
         ),
+      ),
+    );
+  }
+
+  void _toNavigateProductDetails(
+    Product product,
+  ) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return ProductDetailsScreen(
+            product: product,
+          );
+        },
       ),
     );
   }

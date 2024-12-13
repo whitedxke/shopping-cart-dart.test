@@ -2,6 +2,7 @@ part of 'products_screen.dart';
 
 Widget _buildProductsWidget({
   required List<Product> products,
+  required void Function(Product) onProductDetailsTap,
 }) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -30,8 +31,16 @@ Widget _buildProductsWidget({
                   delegate: SliverChildBuilderDelegate(
                     childCount: products.length,
                     (context, index) {
-                      return ProductItemWidget(
-                        image: products[index].thumbnail,
+                      final product = products[index];
+                      return GestureDetector(
+                        onTap: () {
+                          onProductDetailsTap(
+                            product,
+                          );
+                        },
+                        child: ProductItemWidget(
+                          image: product.thumbnail,
+                        ),
                       );
                     },
                   ),

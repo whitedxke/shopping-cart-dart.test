@@ -1,0 +1,51 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../core/models/product/product.dart';
+import 'bloc/product_details_bloc.dart';
+
+class ProductDetailsScreen extends StatefulWidget {
+  final Product _product;
+
+  const ProductDetailsScreen({super.key, required Product product})
+      : _product = product;
+
+  @override
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+}
+
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  @override
+  void initState() {
+    context.read<ProductDetailsBloc>().add(
+      GetProductDetails(
+        product: widget._product,
+      ),
+    );
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        bottom: false,
+        child: BlocBuilder<ProductDetailsBloc, ProductDetailsState>(
+          builder: (context, state) {
+            if (state is ProductDetailsLoaded) {
+              return Center(
+                child: Text(
+                  'PRODUCT LOADED: ${widget._product.title}.',
+                ),
+              );
+            } else {
+              return Container();
+            }
+          },
+        ),
+      ),
+    );
+  }
+}
