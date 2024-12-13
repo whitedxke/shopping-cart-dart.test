@@ -1,15 +1,16 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
+import 'core/navigation/application_router.dart';
 import 'core/network/network.dart';
 import 'core/repositories/base_repository.dart';
 import 'core/repositories/products/products_repository.dart';
 import 'observer.dart';
 import 'ui/product_details/bloc/product_details_bloc.dart';
 import 'ui/products/bloc/products_bloc.dart';
-import 'ui/products/products_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -69,6 +70,8 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ApplicationRouter applicationRouter = ApplicationRouter();
+
     return ScreenUtilInit(
       useInheritedMediaQuery: true,
       minTextAdapt: true,
@@ -86,9 +89,13 @@ class Application extends StatelessWidget {
             create: (context) => ProductDetailsBloc(),
           ),
         ],
-        child: const MaterialApp(
+        child: MaterialApp.router(
+          routerConfig: applicationRouter.config(
+            navigatorObservers: () => [
+              AutoRouteObserver(),
+            ],
+          ),
           debugShowCheckedModeBanner: false,
-          home: ProductsScreen(),
         ),
       ),
     );

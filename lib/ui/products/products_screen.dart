@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/models/product/product.dart';
-import '../product_details/product_details_screen.dart';
+import '../../core/navigation/application_router.dart';
 import '../widgets/header_widget.dart';
 import 'bloc/products_bloc.dart';
 import 'widgets/base_state_widget.dart';
@@ -14,6 +15,7 @@ part 'products_screen.error_state.part.dart';
 part 'products_screen.loading_state.part.dart';
 part 'products_screen.products.part.dart';
 
+@RoutePage()
 class ProductsScreen extends StatefulWidget {
   const ProductsScreen({super.key});
 
@@ -52,15 +54,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
   void _toNavigateProductDetails(
     Product product,
   ) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return ProductDetailsScreen(
-            product: product,
-          );
-        },
-      ),
+    context.pushRoute(
+      ProductDetailsRoute(product: product),
     );
   }
 }

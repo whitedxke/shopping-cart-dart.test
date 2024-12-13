@@ -10,7 +10,7 @@ Widget _buildProductDetailsDescriptionWidget({
     children: [
       HeaderWidget(
         title: 'PRODUCTS DETAILS',
-        onBackTap: () {},
+        onBackTap: onBackTap,
       ),
       Padding(
         padding: EdgeInsets.only(

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +9,7 @@ import 'bloc/product_details_bloc.dart';
 
 part 'product_details_screen.description.part.dart';
 
+@RoutePage()
 class ProductDetailsScreen extends StatefulWidget {
   final Product _product;
 
@@ -41,8 +43,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             if (state is ProductDetailsLoaded) {
               return _buildProductDetailsDescriptionWidget(
                 product: widget._product,
-                addToBasketTap: () {},
-                onBackTap: () {},
+                onBackTap: () {
+                  context.maybePop();
+                },
+                addToBasketTap: () {
+                  // TODO: Need to add logic for Basket Screen.
+                },
               );
             } else {
               return Container();
