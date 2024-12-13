@@ -37,7 +37,7 @@ class BaseStateWidget extends StatelessWidget {
               _message,
               style: TextStyle(
                 fontWeight: FontWeight.w500,
-                fontSize: 18.h,
+                fontSize: 18.sp,
                 color: Colors.black,
               ),
               textAlign: TextAlign.center,

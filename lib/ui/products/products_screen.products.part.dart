@@ -7,7 +7,9 @@ Widget _buildProductsWidget({
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      _buildProductsHeaderWidget(),
+      const HeaderWidget(
+        title: 'PRODUCTS',
+      ),
       Expanded(
         child: Padding(
           padding: EdgeInsets.only(
@@ -48,38 +50,6 @@ Widget _buildProductsWidget({
               ),
             ],
           ),
-        ),
-      ),
-    ],
-  );
-}
-
-Widget _buildProductsHeaderWidget() {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Padding(
-        padding: EdgeInsets.only(
-          top: 16.h,
-        ),
-        child: Text(
-          'PRODUCTS',
-          style: TextStyle(
-            fontSize: 24.h,
-            height: 1.2,
-            fontWeight: FontWeight.w700,
-            color: Colors.black,
-          ),
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.only(
-          top: 4.h,
-        ),
-        child: Divider(
-          thickness: 1.h,
-          height: 1.h,
-          color: Colors.black,
         ),
       ),
     ],

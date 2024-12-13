@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/models/product/product.dart';
+import '../widgets/header_widget.dart';
 import 'bloc/product_details_bloc.dart';
+
+part 'product_details_screen.description.part.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   final Product _product;
@@ -35,10 +39,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         child: BlocBuilder<ProductDetailsBloc, ProductDetailsState>(
           builder: (context, state) {
             if (state is ProductDetailsLoaded) {
-              return Center(
-                child: Text(
-                  'PRODUCT LOADED: ${widget._product.title}.',
-                ),
+              return _buildProductDetailsDescriptionWidget(
+                product: widget._product,
+                addToBasketTap: () {},
+                onBackTap: () {},
               );
             } else {
               return Container();

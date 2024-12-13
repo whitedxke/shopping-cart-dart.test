@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/models/product/product.dart';
-import '../product_details/bloc/product_details_bloc.dart';
 import '../product_details/product_details_screen.dart';
+import '../widgets/header_widget.dart';
 import 'bloc/products_bloc.dart';
 import 'widgets/base_state_widget.dart';
 import 'widgets/product_item_widget.dart';
